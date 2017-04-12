@@ -41,7 +41,6 @@ class testSet1(unittest.TestCase):
     def testChallenge07(self):
         with open('07-out.txt', 'rb') as f:
             expected = f.read()
-        # expected = bytes(expected[:-1], 'utf-8')
         self.assertEqual(Challenge07.main(), expected)
 
     def testChallenge08(self):
