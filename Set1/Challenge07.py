@@ -19,6 +19,4 @@ def main():
     return out
 
 if __name__ == '__main__':
-    # print(main())
-    with open('07-out.txt', 'wb') as f:
-        f.write(main())
+    print(main())

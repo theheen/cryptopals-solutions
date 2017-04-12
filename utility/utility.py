@@ -3,8 +3,8 @@ import string
 
 def charXOR(textbytes, ch):
     out = []
-    for x in range(len(textbytes)):
-        out.append(textbytes[x] ^ ch)
+    for x in textbytes:
+        out.append(x ^ ch)
     return bytes(out)
 
 

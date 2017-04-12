@@ -47,8 +47,6 @@ def main():
         keystring += chr(result[0][0])
         blocks[x] = charXOR(blocks[x], result[0][0])
 
-    # print("KEY: ", keystring, "\n")
-
     # Recombine
     output = []
     for i in range(len(blocks[0])):
