@@ -1,7 +1,7 @@
 import sys
 sys.path.insert(0, '../utility')
 import base64
-from utility import hamming, charXOR, x2
+from utility import hamming, char_XOR, x2
 
 
 def main():
@@ -41,11 +41,11 @@ def main():
     for x in range(key):
         xord = []
         for i in bytes(range(256)):
-            score = x2(charXOR(blocks[x], i))
+            score = x2(char_XOR(blocks[x], i))
             xord.append((i, score))
         result = sorted(xord, key=lambda pair: pair[1])
         keystring += chr(result[0][0])
-        blocks[x] = charXOR(blocks[x], result[0][0])
+        blocks[x] = char_XOR(blocks[x], result[0][0])
 
     # Recombine
     output = []

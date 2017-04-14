@@ -1,6 +1,6 @@
 import sys
 sys.path.insert(0, '../utility')
-from utility import charXOR, x2
+from utility import char_XOR, x2
 
 
 def main():
@@ -8,11 +8,11 @@ def main():
                       "3e783a393b3736")
     xord = []
     for i in bytes(range(256)):
-        score = x2(charXOR(x, i))
+        score = x2(char_XOR(x, i))
         xord.append((i, score))
 
     result = sorted(xord, key=lambda pair: pair[1])
-    return charXOR(x, result[0][0])
+    return char_XOR(x, result[0][0])
 
 if __name__ == '__main__':
     print(main())

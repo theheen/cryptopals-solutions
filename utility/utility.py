@@ -20,14 +20,14 @@ def pad_single_block(block, size):
     return paddedBlock
 
 
-def charXOR(textbytes, ch):
+def char_XOR(textbytes, ch):
     out = []
     for x in textbytes:
         out.append(x ^ ch)
     return bytes(out)
 
 
-def repeatingXOR(textbytes, key):
+def repeating_XOR(textbytes, key):
     keysize = len(key)
     out = []
     for x in range(len(textbytes)):

@@ -1,6 +1,6 @@
 import sys
 sys.path.insert(0, '../utility')
-from utility import charXOR, x2
+from utility import char_XOR, x2
 
 def main():
     strings = []
@@ -15,7 +15,7 @@ def main():
         mindist = 9999
         bestchar = ''
         for n in range(256):
-            distance = x2(charXOR(line, n))
+            distance = x2(char_XOR(line, n))
             if distance < mindist:
                 mindist = distance
                 bestchar = n
@@ -23,7 +23,7 @@ def main():
             bestscore = mindist
             best = count
             key = bestchar
-    return charXOR(strings[best], key)
+    return char_XOR(strings[best], key)
 
 if __name__ == '__main__':
     print(main())
