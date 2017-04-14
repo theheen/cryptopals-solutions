@@ -1,7 +1,17 @@
 import string
 
 
-def padSingleBlock(block, size):
+def split_into_blocks(text, size):
+    blocks = []
+    while len(text) > size:
+        blocks.append(text[:size])
+        text = text[size:]
+    padded = pad_single_block(text, size)
+    blocks.append(padded)
+    return blocks
+
+
+def pad_single_block(block, size):
     if len(block) > size:
         raise ValueError("Block is larger than given size")
     padSize = size - len(block)

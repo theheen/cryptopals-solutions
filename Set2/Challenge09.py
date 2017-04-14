@@ -1,11 +1,11 @@
 import sys
 sys.path.insert(0, '../utility')
-from utility import padSingleBlock
+from utility import pad_single_block
 
 
 def main():
     unpadded = b"YELLOW SUBMARINE"
-    padded = padSingleBlock(unpadded, 20)
+    padded = pad_single_block(unpadded, 20)
     return padded
 
 
