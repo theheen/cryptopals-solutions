@@ -1,6 +1,15 @@
 import string
 
 
+def padSingleBlock(block, size):
+    if len(block) > size:
+        raise ValueError("Block is larger than given size")
+    padSize = size - len(block)
+    padding = bytes([padSize] * padSize)
+    paddedBlock = b''.join([block, padding])
+    return paddedBlock
+
+
 def charXOR(textbytes, ch):
     out = []
     for x in textbytes:
