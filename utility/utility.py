@@ -51,10 +51,13 @@ def cbc_decrypt(blocks, key, IV):
 
 def split_into_blocks(text, size):
     blocks = []
-    while len(text) > size:
+    while len(text) >= size:
         blocks.append(text[:size])
         text = text[size:]
-    padded = pad_single_block(text, size)
+    if len(text) > 0:
+        padded = pad_single_block(text, size)
+    else:
+        padded = bytes([size] * size)
     blocks.append(padded)
     return blocks
 
