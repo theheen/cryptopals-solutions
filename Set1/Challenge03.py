@@ -14,5 +14,6 @@ def main():
     result = sorted(xord, key=lambda pair: pair[1])
     return char_XOR(x, result[0][0])
 
+
 if __name__ == '__main__':
     print(main())

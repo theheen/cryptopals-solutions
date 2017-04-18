@@ -2,6 +2,7 @@ import sys
 sys.path.insert(0, '../utility')
 from utility import char_XOR, x2
 
+
 def main():
     strings = []
     with open('4.txt') as f:
@@ -24,6 +25,7 @@ def main():
             best = count
             key = bestchar
     return char_XOR(strings[best], key)
+
 
 if __name__ == '__main__':
     print(main())

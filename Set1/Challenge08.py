@@ -19,5 +19,6 @@ def main():
     results = sorted(scores, key=lambda x: scores[x], reverse=True)
     return results[0].hex()
 
+
 if __name__ == '__main__':
     print("String", main(), "is probably encrypted by AES in ECB mode.")

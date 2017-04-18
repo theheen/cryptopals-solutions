@@ -9,5 +9,6 @@ def main():
     xord = bytes(out).hex()
     return xord
 
+
 if __name__ == '__main__':
     print(main())

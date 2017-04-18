@@ -7,5 +7,6 @@ def main():
     b64 = base64.b64encode(by)
     return b64
 
+
 if __name__ == "__main__":
     print(main())

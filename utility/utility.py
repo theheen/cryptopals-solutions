@@ -1,4 +1,52 @@
 import string
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.backends import default_backend
+
+
+def _aes_ecb_cipher(key):
+    backend = default_backend()
+    cipher = Cipher(algorithms.AES(key), modes.ECB(), backend=backend)
+    return cipher
+
+
+def ecb_encrypt(text, key):
+    cipher = _aes_ecb_cipher(key)
+    encryptor = cipher.encryptor()
+    enc = encryptor.update(text)
+    return enc
+
+
+def ecb_decrypt(text, key):
+    cipher = _aes_ecb_cipher(key)
+    decryptor = cipher.decryptor()
+    dec = decryptor.update(text)
+    return dec
+
+
+def cbc_encrypt(blocks, key, IV):
+    cipher = _aes_ecb_cipher(key)
+    encryptor = cipher.encryptor()
+    out = []
+    prev = IV
+    for b in blocks:
+        xord = repeating_XOR(b, prev)
+        enc = encryptor.update(xord)
+        out.append(enc)
+        prev = enc
+    return out
+
+
+def cbc_decrypt(blocks, key, IV):
+    cipher = _aes_ecb_cipher(key)
+    decryptor = cipher.decryptor()
+    out = []
+    prev = IV
+    for b in blocks:
+        dec = decryptor.update(b)
+        xord = repeating_XOR(dec, prev)
+        out.append(xord)
+        prev = b
+    return out
 
 
 def split_into_blocks(text, size):

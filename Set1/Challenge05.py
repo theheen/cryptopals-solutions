@@ -9,5 +9,6 @@ def main():
     rXORd = repeating_XOR(x, key).hex()
     return rXORd
 
+
 if __name__ == '__main__':
     print(main())
