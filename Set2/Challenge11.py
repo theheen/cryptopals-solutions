@@ -19,15 +19,15 @@ def encryption_oracle(text, cheat=False):
     if cointoss:
         IV = urandom(16)
         enc = cbc_encrypt(blocks, key, IV)
-        enc = b''.join(enc)
     else:
-        ecb_input = b''.join(blocks)
-        enc = ecb_encrypt(ecb_input, key)
+        enc = ecb_encrypt(blocks, key)
+
+    out = b''.join(enc)
 
     if cheat:
-        return (enc, cointoss)
+        return (out, cointoss)
     else:
-        return enc
+        return out
 
 
 def main():

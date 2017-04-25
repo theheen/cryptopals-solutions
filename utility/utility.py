@@ -9,10 +9,12 @@ def _aes_ecb_cipher(key):
     return cipher
 
 
-def ecb_encrypt(text, key):
+def ecb_encrypt(blocks, key):
     cipher = _aes_ecb_cipher(key)
     encryptor = cipher.encryptor()
-    enc = encryptor.update(text)
+    enc = []
+    for i in blocks:
+        enc.append(encryptor.update(i))
     return enc
 
 
