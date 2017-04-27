@@ -1,5 +1,4 @@
 from os import urandom
-import collections
 import base64
 import sys
 sys.path.insert(0, '../utility')
@@ -44,12 +43,10 @@ def hidden_message_length():
 def ecb_or_cbc(blocksize):
     text = b''.join([b'x'] * 160)
     enc = ecb_encryptor(text)
-    countdict = collections.defaultdict(int)
-    for n in range(0, len(enc), blocksize):
-        block = enc[n:n + blocksize]
-        countdict[block] += 1
+    unique_blocks = set(
+        [enc[n:n + blocksize] for n in range(0, len(enc), blocksize)])
     block_count = len(enc) // blocksize
-    repeated_blocks = block_count - len(countdict)
+    repeated_blocks = block_count - len(unique_blocks)
     if repeated_blocks > 1:
         return "ECB"
     else:
