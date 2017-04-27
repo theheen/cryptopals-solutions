@@ -1,6 +1,5 @@
 from os import urandom
 import random
-import collections
 import sys
 sys.path.insert(0, '../utility')
 from utility import cbc_encrypt, ecb_encrypt, split_into_blocks
@@ -33,12 +32,9 @@ def encryption_oracle(text, cheat=False):
 def main():
     text = b''.join([b'x'] * 160)
     enc, algo_choice = encryption_oracle(text, True)
-    countdict = collections.defaultdict(int)
-    for n in range(0, len(enc), 16):
-        block = enc[n:n + 16]
-        countdict[block] += 1
+    unique_blocks = set([enc[n:n+16] for n in range(0, len(enc), 16)])
     block_count = len(enc) // 16
-    repeated_blocks = block_count - len(countdict)
+    repeated_blocks = block_count - len(unique_blocks)
     if repeated_blocks > 1:
         if algo_choice == 0:  # CBC
             return (True, "CBC")
