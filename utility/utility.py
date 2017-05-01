@@ -12,9 +12,7 @@ def _aes_ecb_cipher(key):
 def ecb_encrypt(blocks, key):
     cipher = _aes_ecb_cipher(key)
     encryptor = cipher.encryptor()
-    enc = []
-    for i in blocks:
-        enc.append(encryptor.update(i))
+    enc = [encryptor.update(i) for i in blocks]
     return enc
 
 
@@ -73,18 +71,31 @@ def pad_single_block(block, size):
     return paddedBlock
 
 
+def is_valid_padding(blocks):
+    last_no = blocks[-1][-1]
+    return blocks[-1][-last_no:] == bytes([last_no] * last_no)
+
+
+def strip_padding(blocks):
+    if not is_valid_padding(blocks):
+        raise ValueError("Invalid padding.")
+    last_no = blocks[-1][-1]
+    out = blocks[:-1]
+    out.append(blocks[-1][:-last_no])
+    if len(out[-1]) == 0:
+        return out[:-1]
+    else:
+        return out
+
+
 def char_XOR(textbytes, ch):
-    out = []
-    for x in textbytes:
-        out.append(x ^ ch)
+    out = [x ^ ch for x in textbytes]
     return bytes(out)
 
 
 def repeating_XOR(textbytes, key):
     keysize = len(key)
-    out = []
-    for x in range(len(textbytes)):
-        out.append(textbytes[x] ^ key[x % keysize])
+    out = [textbytes[x] ^ key[x % keysize] for x in range(len(textbytes))]
     return bytes(out)
 
 
